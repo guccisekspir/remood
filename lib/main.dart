@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
                 theme: ThemeData(
                   hintColor: Colors.white,
                   hoverColor: Colors.white,
-                  primarySwatch: Colors.pink,
+                  primarySwatch: Colors.blue,
                   accentColor: Colors.black,
                   visualDensity: VisualDensity.adaptivePlatformDensity,
                 ),

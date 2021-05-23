@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:remood/helpers/sizeHelper.dart';
 import 'package:remood/models/users.dart';
 import 'package:remood/pages/loginPage.dart';
 import 'package:remood/pages/navigationPage.dart';
@@ -32,7 +33,15 @@ class _LandPageState extends State<LandPage> {
   }
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    SizeHelper(fetchedContext: context);
+
     return userID == ""
         ? LoginPage()
         : NavigationPage(

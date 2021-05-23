@@ -1,26 +1,24 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:remood/blocs/databaseBloc/bloc/database_bloc.dart';
 import 'package:remood/helpers/sizeHelper.dart';
-import 'package:remood/locator.dart';
-import 'package:remood/models/events.dart';
+import 'package:remood/models/question.dart';
 import 'package:remood/models/users.dart';
-import 'package:remood/pages/subPages/newEventPage.dart';
-import 'package:remood/widgets/eventSheet.dart';
+import 'package:remood/widgets/questionsSheet.dart';
 
-class EventsPage extends StatefulWidget {
+import '../../locator.dart';
+
+class CollabPage extends StatefulWidget {
   final Users currentUser;
 
-  const EventsPage({Key? key, required this.currentUser}) : super(key: key);
-
+  const CollabPage({Key? key, required this.currentUser}) : super(key: key);
   @override
-  _EventsPageState createState() => _EventsPageState();
+  _CollabPageState createState() => _CollabPageState();
 }
 
-class _EventsPageState extends State<EventsPage>
+class _CollabPageState extends State<CollabPage>
     with SingleTickerProviderStateMixin {
   late TabController tabController;
 
@@ -31,15 +29,15 @@ class _EventsPageState extends State<EventsPage>
   SizeHelper sizeHelper = SizeHelper();
 
   bool isEventsLoaded = false;
-  List<Event> outdoorEvents = [];
-  List<Event> gameEvents = [];
-  List<Event> motivationEvents = [];
+
+  List<Question> generalQuestions = [];
+  List<Question> departmentQuestions = [];
 
   @override
   void initState() {
     // TODO: implement initState
-    databaseBloc.add(GetEvents());
-    tabController = TabController(length: 3, vsync: this);
+    databaseBloc.add(GetQuestion());
+    tabController = TabController(length: 2, vsync: this);
     super.initState();
   }
 
@@ -50,19 +48,17 @@ class _EventsPageState extends State<EventsPage>
       child: BlocListener(
         bloc: databaseBloc,
         listener: (context, state) {
-          if (state is EventFetchingState) {
+          if (state is QuestionsFetchingState) {
             EasyLoading.show();
-          }
-          if (state is EventFetchedState) {
+          } else if (state is QuestionsFetchedState) {
             EasyLoading.dismiss();
             setState(() {
+              generalQuestions = state.generalQuestions;
+              departmentQuestions = state.departmentQuestions;
               isEventsLoaded = true;
-              outdoorEvents = state.outdoorEvents;
-              gameEvents = state.gameEvents;
-              motivationEvents = state.motivationEvents;
             });
-          }
-          if (state is EventFetchErrorState) {
+          } else if (state is QuestionsFetchErrorState) {
+            debugPrint("Error");
             EasyLoading.dismiss();
             scaffoldMessengerKey.currentState?.showSnackBar(SnackBar(
               content: Text(state.errorCode),
@@ -73,23 +69,21 @@ class _EventsPageState extends State<EventsPage>
         child: isEventsLoaded
             ? Scaffold(
                 floatingActionButton: GestureDetector(
-                  onTap: () async {
-                    EventSavedState state = await Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => NewEventPage(
-                          editedUser: widget.currentUser,
-                          databaseBloc: databaseBloc,
-                        ),
+                  onTap: () {
+                    databaseBloc.add(
+                      SaveQuestion(
+                        willSaveQuestions: Question(
+                            type: "Department",
+                            likeCount: 21,
+                            commentCount: 2,
+                            body:
+                                "Ekde belirttiğim Jira #3214 milestone'una yardımcı olacak birileri var mı?",
+                            title: "Yardım Çığlığı :D",
+                            fromWhoName: "Sevda",
+                            fromWhoPhoto:
+                                "https://firebasestorage.googleapis.com/v0/b/remood-11d0c.appspot.com/o/Ekran%20Resmi%202021-05-22%2020.52.30.png?alt=media&token=7ef24439-176f-477c-94f9-848e27bff2f0"),
                       ),
                     );
-                    setState(() {
-                      EasyLoading.dismiss();
-                      isEventsLoaded = true;
-                      outdoorEvents = state.outdoorEvents;
-                      gameEvents = state.gameEvents;
-                      motivationEvents = state.motivationEvents;
-                    });
                   },
                   child: CircleAvatar(
                     radius: 25,
@@ -124,17 +118,13 @@ class _EventsPageState extends State<EventsPage>
                                         color: Colors.black, width: 2.0)),
                                 tabs: [
                                   Tab(
-                                    icon: Icon(LineIcons.cowboyHatSide),
-                                    text: "Outdoor",
+                                    icon: Icon(LineIcons.question),
+                                    text: "General",
                                   ),
                                   Tab(
-                                    icon: Icon(LineIcons.gamepad),
-                                    text: "Game",
+                                    icon: Icon(LineIcons.businessTime),
+                                    text: "Department",
                                   ),
-                                  Tab(
-                                    icon: Icon(LineIcons.peace),
-                                    text: "Motivation",
-                                  )
                                 ],
                               ),
                             ),
@@ -145,17 +135,10 @@ class _EventsPageState extends State<EventsPage>
                           child: TabBarView(
                             controller: tabController,
                             children: [
-                              EventSheet(
-                                eventList: outdoorEvents,
-                                currentUser: widget.currentUser,
-                              ),
-                              EventSheet(
-                                  eventList: gameEvents,
-                                  currentUser: widget.currentUser),
-                              EventSheet(
-                                eventList: motivationEvents,
-                                currentUser: widget.currentUser,
-                              )
+                              QuestionsSheet(
+                                  currentQuestions: generalQuestions),
+                              QuestionsSheet(
+                                  currentQuestions: departmentQuestions),
                             ],
                           ),
                         )
@@ -169,20 +152,5 @@ class _EventsPageState extends State<EventsPage>
               ),
       ),
     );
-  }
-
-  saveEvent() {
-    databaseBloc.add(SaveEvent(
-        willSaveEvent: Event(
-            name: "Deneme Event",
-            eventSections: ["Gönüllülük,", "Takım Çalışması"],
-            location: "Yıldız Hatıra Ormanı",
-            timeStamp: "21.11.2021",
-            organizerName: "Çağrı",
-            organizerUid: "asdasdasda",
-            winnerTags: ["Nature", "Gonullu"],
-            photoUrl: "asdadas",
-            department: "Global",
-            type: "Outdoor")));
   }
 }
