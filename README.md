@@ -1,7 +1,6 @@
 # remood
 
-Türk Telekomun yaptığı İşin Geleceği hackathonunda 48 saat içinde tasarlayıp gerçeğe dönüştürdüğüm Gamification odaklı Şirket için sosyal medya uygulaması.
-
+Social media application for the Gamification-oriented Company, which I designed and realized within 48 hours at Türk Telekom's Future of Work hackathon. 
 
 
 
