@@ -13,7 +13,7 @@ class AuthInitial extends AuthState {
 class AuthCompletedState extends AuthState {
   final Users authedUser;
 
-  AuthCompletedState({required this.authedUser});
+  const AuthCompletedState({required this.authedUser});
   @override
   // TODO: implement props
   List<Object?> get props => [authedUser];
@@ -28,7 +28,7 @@ class AuthLoadingState extends AuthState {
 class AuthErrorState extends AuthState {
   final String errorCode;
 
-  AuthErrorState({required this.errorCode});
+  const AuthErrorState({required this.errorCode});
 
   @override
   // TODO: implement props

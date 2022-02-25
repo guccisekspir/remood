@@ -23,8 +23,7 @@ class _ProfilePageState extends State<ProfilePage> {
     super.initState();
   }
 
-  TextStyle textStyle1 =
-      GoogleFonts.lilitaOne(color: Colors.white, fontSize: 25);
+  TextStyle textStyle1 = GoogleFonts.lilitaOne(color: Colors.white, fontSize: 25);
 
   @override
   Widget build(BuildContext context) {
@@ -32,8 +31,7 @@ class _ProfilePageState extends State<ProfilePage> {
       body: Container(
         width: sizeHelper.width,
         height: sizeHelper.height,
-        decoration: BoxDecoration(
-            gradient: LinearGradient(colors: [Colors.cyan, Colors.lightBlue])),
+        decoration: const BoxDecoration(gradient: LinearGradient(colors: [Colors.cyan, Colors.lightBlue])),
         child: Column(
           children: [
             CircleAvatar(
@@ -54,24 +52,20 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text("Rozetleri",
-                  style:
-                      GoogleFonts.lilitaOne(color: Colors.black, fontSize: 25)),
+              child: Text("Rozetleri", style: GoogleFonts.lilitaOne(color: Colors.black, fontSize: 25)),
             ),
             badgeMaker(),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text("Ulasılabilirlik",
-                  style:
-                      GoogleFonts.lilitaOne(color: Colors.black, fontSize: 25)),
+              child: Text("Ulasılabilirlik", style: GoogleFonts.lilitaOne(color: Colors.black, fontSize: 25)),
             ),
-            Text(
+            const Text(
               "Müsait Zaman \nDilimleri\n 11:00-15:00\nGMT+3",
               textAlign: TextAlign.center,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
+              children: const [
                 Icon(
                   LineIcons.instagram,
                   color: Colors.pink,
@@ -95,9 +89,7 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text("Son etkinlikleri",
-                  style:
-                      GoogleFonts.lilitaOne(color: Colors.black, fontSize: 25)),
+              child: Text("Son etkinlikleri", style: GoogleFonts.lilitaOne(color: Colors.black, fontSize: 25)),
             ),
           ],
         ),
@@ -126,7 +118,7 @@ class _ProfilePageState extends State<ProfilePage> {
     badges.add(countBadge(size, 2));
     badges.add(donateBadge(size, 3));
     badges.add(volunteeringBadge(size, 1));
-    return Container(
+    return SizedBox(
       height: 80,
       width: sizeHelper.width,
       child: ListView.builder(

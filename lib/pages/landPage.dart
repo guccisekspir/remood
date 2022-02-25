@@ -6,6 +6,8 @@ import 'package:remood/pages/loginPage.dart';
 import 'package:remood/pages/navigationPage.dart';
 
 class LandPage extends StatefulWidget {
+  const LandPage({Key? key}) : super(key: key);
+
   @override
   _LandPageState createState() => _LandPageState();
 }

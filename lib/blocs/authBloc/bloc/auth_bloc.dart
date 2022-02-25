@@ -14,7 +14,7 @@ part 'auth_state.dart';
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc() : super(AuthInitial());
 
-  AuthRepository _authRepository = getIt<AuthRepository>();
+  final AuthRepository _authRepository = getIt<AuthRepository>();
 
   Users? authedUser;
 

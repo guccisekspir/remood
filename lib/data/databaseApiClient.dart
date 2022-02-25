@@ -45,12 +45,11 @@ class DatabaseApiClient {
 
     QuerySnapshot eventData = await firestore.collection("events").get();
 
-    eventData.docs.forEach((element) {
-      Event newEvent =
-          Event.fromMap(element.data.call() as Map<String, dynamic>);
+    for (var element in eventData.docs) {
+      Event newEvent = Event.fromMap(element.data.call() as Map<String, dynamic>);
       events.add(newEvent);
       debugPrint("Current event " + newEvent.name!);
-    });
+    }
 
     return events;
   }
@@ -60,21 +59,16 @@ class DatabaseApiClient {
 
     QuerySnapshot postData = await firestore.collection("socialPosts").get();
 
-    postData.docs.forEach(
-      (element) {
-        socialPosts.add(
-          SocialMediaPost.fromMap(element.data.call() as Map<String, dynamic>),
-        );
-      },
-    );
+    for (var element in postData.docs) {
+      socialPosts.add(
+        SocialMediaPost.fromMap(element.data.call() as Map<String, dynamic>),
+      );
+    }
     return socialPosts;
   }
 
   Future<bool> updateUser(Users willUpdateUser) async {
-    firestore
-        .collection("users")
-        .doc(willUpdateUser.uid)
-        .update(willUpdateUser.toMap());
+    firestore.collection("users").doc(willUpdateUser.uid).update(willUpdateUser.toMap());
     return true;
   }
 
@@ -96,12 +90,11 @@ class DatabaseApiClient {
 
     QuerySnapshot eventData = await firestore.collection("questions").get();
 
-    eventData.docs.forEach((element) {
-      Question newQuestions =
-          Question.fromMap(element.data.call() as Map<String, dynamic>);
+    for (var element in eventData.docs) {
+      Question newQuestions = Question.fromMap(element.data.call() as Map<String, dynamic>);
       questions.add(newQuestions);
       debugPrint("Current event " + newQuestions.title!);
-    });
+    }
 
     return questions;
   }

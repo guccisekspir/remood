@@ -7,8 +7,7 @@ import 'package:remood/models/question.dart';
 class QuestionsSheet extends StatefulWidget {
   final List<Question> currentQuestions;
 
-  const QuestionsSheet({Key? key, required this.currentQuestions})
-      : super(key: key);
+  const QuestionsSheet({Key? key, required this.currentQuestions}) : super(key: key);
   @override
   _QuestionsSheetState createState() => _QuestionsSheetState();
 }
@@ -25,8 +24,7 @@ class _QuestionsSheetState extends State<QuestionsSheet> {
             padding: const EdgeInsets.all(8.0),
             child: Container(
               height: sizeHelper.height! * 0.15,
-              decoration: BoxDecoration(
-                  color: Colors.cyan, borderRadius: BorderRadius.circular(15)),
+              decoration: BoxDecoration(color: Colors.cyan, borderRadius: BorderRadius.circular(15)),
               child: Stack(
                 children: [
                   Align(
@@ -39,19 +37,15 @@ class _QuestionsSheetState extends State<QuestionsSheet> {
                           width: 50,
                           decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              image: DecorationImage(
-                                  image: NetworkImage(
-                                      currentQuestion.fromWhoPhoto!))),
+                              image: DecorationImage(image: NetworkImage(currentQuestion.fromWhoPhoto!))),
                         ),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(currentQuestion.title!,
-                                style: GoogleFonts.roboto(color: Colors.black)),
+                            Text(currentQuestion.title!, style: GoogleFonts.roboto(color: Colors.black)),
                             Text(currentQuestion.fromWhoName! + " sordu...",
-                                style:
-                                    GoogleFonts.roboto(color: Colors.black54)),
+                                style: GoogleFonts.roboto(color: Colors.black54)),
                           ],
                         )
                       ],
@@ -71,12 +65,12 @@ class _QuestionsSheetState extends State<QuestionsSheet> {
                     alignment: Alignment.bottomCenter,
                     child: Row(
                       children: [
-                        Spacer(),
-                        Icon(LineIcons.heartAlt),
+                        const Spacer(),
+                        const Icon(LineIcons.heartAlt),
                         Text(currentQuestion.likeCount.toString()),
-                        Icon(LineIcons.commentAlt),
+                        const Icon(LineIcons.commentAlt),
                         Text(currentQuestion.commentCount.toString()),
-                        Spacer(),
+                        const Spacer(),
                       ],
                     ),
                   ),
@@ -85,8 +79,8 @@ class _QuestionsSheetState extends State<QuestionsSheet> {
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Text("600"),
-                        Container(
+                        const Text("600"),
+                        SizedBox(
                           width: 30,
                           height: 30,
                           child: Image.asset("assets/icons/coin.png"),

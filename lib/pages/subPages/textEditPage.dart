@@ -30,7 +30,7 @@ class TextEditPage extends StatelessWidget {
         appBar: AppBar(
           automaticallyImplyLeading: false,
           leading: IconButton(
-            icon: Icon(Icons.close),
+            icon: const Icon(Icons.close),
             onPressed: () {
               Navigator.pop(context);
               focusNode.unfocus();
@@ -39,7 +39,7 @@ class TextEditPage extends StatelessWidget {
           title: Text(title),
           actions: [
             IconButton(
-                icon: Icon(Icons.done),
+                icon: const Icon(Icons.done),
                 onPressed: () {
                   unChangedValue == textEditingController.text
                       ? Navigator.of(context).pop()
@@ -49,7 +49,7 @@ class TextEditPage extends StatelessWidget {
         ),
         body: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             myInputForm(

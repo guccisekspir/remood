@@ -5,7 +5,7 @@ Widget volunteeringBadge(double size, int level) {
   if (level == 1) assetPath = "assets/badges/sosyal1.png";
   if (level == 2) assetPath = "assets/badges/sosyal2.png";
   if (level == 3) assetPath = "assets/badges/sosyal3.png";
-  return Container(
+  return SizedBox(
     width: size,
     height: size,
     child: Image.asset(
@@ -20,7 +20,7 @@ Widget natureBadge(double size, int level) {
   if (level == 1) assetPath = "assets/badges/cevre1.png";
   if (level == 2) assetPath = "assets/badges/cevre2.png";
   if (level == 3) assetPath = "assets/badges/cevre3.png";
-  return Container(
+  return SizedBox(
     width: size,
     height: size,
     child: Image.asset(
@@ -35,7 +35,7 @@ Widget countBadge(double size, int level) {
   if (level == 1) assetPath = "assets/badges/rozet1.png";
   if (level == 2) assetPath = "assets/badges/rozet2.png";
   if (level == 3) assetPath = "assets/badges/rozet3.png";
-  return Container(
+  return SizedBox(
     width: size,
     height: size,
     child: Image.asset(
@@ -50,7 +50,7 @@ Widget donateBadge(double size, int level) {
   if (level == 1) assetPath = "assets/badges/kan1.png";
   if (level == 2) assetPath = "assets/badges/kan2.png";
   if (level == 3) assetPath = "assets/badges/kan3.png";
-  return Container(
+  return SizedBox(
     width: size,
     height: size,
     child: Image.asset(

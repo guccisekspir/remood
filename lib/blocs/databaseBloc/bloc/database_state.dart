@@ -21,10 +21,7 @@ class EventSavedState extends DatabaseState {
   final List<Event> gameEvents;
   final List<Event> motivationEvents;
 
-  EventSavedState(
-      {required this.outdoorEvents,
-      required this.gameEvents,
-      required this.motivationEvents});
+  const EventSavedState({required this.outdoorEvents, required this.gameEvents, required this.motivationEvents});
   @override
   // TODO: implement props
   List<Object?> get props => [outdoorEvents, gameEvents, motivationEvents];
@@ -33,7 +30,7 @@ class EventSavedState extends DatabaseState {
 class EventSavingErrorState extends DatabaseState {
   final String errorCode;
 
-  EventSavingErrorState(this.errorCode);
+  const EventSavingErrorState(this.errorCode);
 
   @override
   // TODO: implement props
@@ -51,10 +48,7 @@ class EventFetchedState extends DatabaseState {
   final List<Event> gameEvents;
   final List<Event> motivationEvents;
 
-  EventFetchedState(
-      {required this.outdoorEvents,
-      required this.gameEvents,
-      required this.motivationEvents});
+  const EventFetchedState({required this.outdoorEvents, required this.gameEvents, required this.motivationEvents});
 
   @override
   // TODO: implement props
@@ -64,7 +58,7 @@ class EventFetchedState extends DatabaseState {
 class EventFetchErrorState extends DatabaseState {
   final String errorCode;
 
-  EventFetchErrorState(this.errorCode);
+  const EventFetchErrorState(this.errorCode);
 
   @override
   // TODO: implement props
@@ -80,7 +74,7 @@ class SocialFetchingState extends DatabaseState {
 class SocialFetchedState extends DatabaseState {
   final List<SocialMediaPost> socialPosts;
 
-  SocialFetchedState({required this.socialPosts});
+  const SocialFetchedState({required this.socialPosts});
 
   @override
   // TODO: implement props
@@ -90,7 +84,7 @@ class SocialFetchedState extends DatabaseState {
 class SocialetchErrorState extends DatabaseState {
   final String errorCode;
 
-  SocialetchErrorState(this.errorCode);
+  const SocialetchErrorState(this.errorCode);
 
   @override
   // TODO: implement props
@@ -100,7 +94,7 @@ class SocialetchErrorState extends DatabaseState {
 class UserUpdated extends DatabaseState {
   final Users updatedUser;
 
-  UserUpdated({required this.updatedUser});
+  const UserUpdated({required this.updatedUser});
   @override
   // TODO: implement props
   List<Object?> get props => [updatedUser];
@@ -116,8 +110,7 @@ class QuestionsFetchedState extends DatabaseState {
   final List<Question> generalQuestions;
   final List<Question> departmentQuestions;
 
-  QuestionsFetchedState(
-      {required this.departmentQuestions, required this.generalQuestions});
+  const QuestionsFetchedState({required this.departmentQuestions, required this.generalQuestions});
 
   @override
   // TODO: implement props
@@ -127,7 +120,7 @@ class QuestionsFetchedState extends DatabaseState {
 class QuestionsFetchErrorState extends DatabaseState {
   final String errorCode;
 
-  QuestionsFetchErrorState(this.errorCode);
+  const QuestionsFetchErrorState(this.errorCode);
 
   @override
   // TODO: implement props
@@ -144,8 +137,7 @@ class QuestionsSavedState extends DatabaseState {
   final List<Question> generalQuestions;
   final List<Question> departmentQuestions;
 
-  QuestionsSavedState(
-      {required this.departmentQuestions, required this.generalQuestions});
+  const QuestionsSavedState({required this.departmentQuestions, required this.generalQuestions});
   @override
   // TODO: implement props
   List<Object?> get props => [generalQuestions, departmentQuestions];
@@ -154,7 +146,7 @@ class QuestionsSavedState extends DatabaseState {
 class QuestionsSavingErrorState extends DatabaseState {
   final String errorCode;
 
-  QuestionsSavingErrorState(this.errorCode);
+  const QuestionsSavingErrorState(this.errorCode);
 
   @override
   // TODO: implement props

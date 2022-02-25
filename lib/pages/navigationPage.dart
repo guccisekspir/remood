@@ -53,18 +53,15 @@ class _NavigationPageState extends State<NavigationPage> {
             Container(
               width: 30,
               height: 30,
-              decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  image: DecorationImage(
-                      image: AssetImage("assets/icons/coin.png"))),
+              decoration: const BoxDecoration(
+                  shape: BoxShape.circle, image: DecorationImage(image: AssetImage("assets/icons/coin.png"))),
             ),
-            Text(currentUser.moodcoin.toString() + " Mood Points",
-                style: GoogleFonts.roboto(fontSize: 15)),
-            Spacer(),
-            CircleAvatar(
+            Text(currentUser.moodcoin.toString() + " Mood Points", style: GoogleFonts.roboto(fontSize: 15)),
+            const Spacer(),
+            const CircleAvatar(
               child: Icon(LineIcons.tasks),
             ),
-            Spacer(),
+            const Spacer(),
           ],
         ),
         actions: [
@@ -77,7 +74,7 @@ class _NavigationPageState extends State<NavigationPage> {
                   textAlign: TextAlign.center,
                   style: GoogleFonts.roboto(fontSize: 10),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 5,
                 ),
                 Stack(
@@ -88,13 +85,12 @@ class _NavigationPageState extends State<NavigationPage> {
                       decoration: BoxDecoration(
                           color: Colors.black,
                           shape: BoxShape.circle,
-                          image: DecorationImage(
-                              image: NetworkImage(currentUser.photoUrl!))),
+                          image: DecorationImage(image: NetworkImage(currentUser.photoUrl!))),
                     ),
                     Container(
                       width: 15,
                       height: 15,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         color: Colors.greenAccent,
                         shape: BoxShape.circle,
                       ),
@@ -106,7 +102,6 @@ class _NavigationPageState extends State<NavigationPage> {
           )
         ],
         automaticallyImplyLeading: false,
-        backwardsCompatibility: false,
       ),
       body: BlocListener(
         bloc: databaseBloc,
@@ -126,14 +121,14 @@ class _NavigationPageState extends State<NavigationPage> {
               (BuildContext context, AsyncSnapshot<NavBarItem> snapshot) {
             if (snapshot.hasData) {
               switch (snapshot.data!) {
-                case NavBarItem.Home:
+                case NavBarItem.home:
                   return HomePage(currentUser: currentUser);
 
-                case NavBarItem.Collab:
+                case NavBarItem.collab:
                   return CollabPage(currentUser: currentUser);
-                case NavBarItem.Events:
+                case NavBarItem.events:
                   return EventsPage(currentUser: currentUser);
-                case NavBarItem.Profile:
+                case NavBarItem.profile:
                   return ProfilePage(currentUser: currentUser);
               }
             }
@@ -153,10 +148,7 @@ class _NavigationPageState extends State<NavigationPage> {
               gapLocation: GapLocation.none,
 
               notchSmoothness: NotchSmoothness.softEdge,
-              onTap: (index) => setState(() => {
-                    _bottomNavBarBloc.pickItem(index),
-                    bottomNavBarIndex = index
-                  }),
+              onTap: (index) => setState(() => {_bottomNavBarBloc.pickItem(index), bottomNavBarIndex = index}),
               itemCount: 4,
               tabBuilder: (int index, bool isActive) {
                 final color = isActive ? Colors.white : Colors.black;
@@ -187,12 +179,7 @@ class _NavigationPageState extends State<NavigationPage> {
     );
   }
 
-  List<IconData> iconList = [
-    LineIcons.home,
-    LineIcons.handHoldingHeart,
-    LineIcons.tasks,
-    LineIcons.user
-  ];
+  List<IconData> iconList = [LineIcons.home, LineIcons.handHoldingHeart, LineIcons.tasks, LineIcons.user];
 
   List<String> navbarString = ["Home", "Collab", "Events", "Profile"];
 }

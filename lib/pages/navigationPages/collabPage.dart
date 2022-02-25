@@ -18,13 +18,11 @@ class CollabPage extends StatefulWidget {
   _CollabPageState createState() => _CollabPageState();
 }
 
-class _CollabPageState extends State<CollabPage>
-    with SingleTickerProviderStateMixin {
+class _CollabPageState extends State<CollabPage> with SingleTickerProviderStateMixin {
   late TabController tabController;
 
   DatabaseBloc databaseBloc = getIt<DatabaseBloc>();
-  GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey =
-      GlobalKey<ScaffoldMessengerState>();
+  GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
 
   SizeHelper sizeHelper = SizeHelper();
 
@@ -76,8 +74,7 @@ class _CollabPageState extends State<CollabPage>
                             type: "Department",
                             likeCount: 21,
                             commentCount: 2,
-                            body:
-                                "Ekde belirttiğim Jira #3214 milestone'una yardımcı olacak birileri var mı?",
+                            body: "Ekde belirttiğim Jira #3214 milestone'una yardımcı olacak birileri var mı?",
                             title: "Yardım Çığlığı :D",
                             fromWhoName: "Sevda",
                             fromWhoPhoto:
@@ -87,7 +84,7 @@ class _CollabPageState extends State<CollabPage>
                   },
                   child: CircleAvatar(
                     radius: 25,
-                    backgroundColor: Color(0XFF79BAF2),
+                    backgroundColor: const Color(0XFF79BAF2),
                     child: Icon(
                       LineIcons.plus,
                       color: Colors.black.withOpacity(0.6),
@@ -100,23 +97,20 @@ class _CollabPageState extends State<CollabPage>
                     child: Column(
                       children: [
                         Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 30, vertical: 10),
+                          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
                           child: Material(
                             borderRadius: BorderRadius.circular(15),
-                            color: Color(0XFF79BAF2),
+                            color: const Color(0XFF79BAF2),
                             child: Container(
                               height: sizeHelper.height! * 0.09,
                               child: TabBar(
                                 unselectedLabelColor: Colors.black,
                                 controller: tabController,
                                 labelColor: Colors.white,
-                                indicator: UnderlineTabIndicator(
-                                    insets:
-                                        EdgeInsets.symmetric(horizontal: 30),
-                                    borderSide: BorderSide(
-                                        color: Colors.black, width: 2.0)),
-                                tabs: [
+                                indicator: const UnderlineTabIndicator(
+                                    insets: EdgeInsets.symmetric(horizontal: 30),
+                                    borderSide: BorderSide(color: Colors.black, width: 2.0)),
+                                tabs: const [
                                   Tab(
                                     icon: Icon(LineIcons.question),
                                     text: "General",
@@ -130,15 +124,13 @@ class _CollabPageState extends State<CollabPage>
                             ),
                           ),
                         ),
-                        Container(
+                        SizedBox(
                           height: sizeHelper.height! * 0.70,
                           child: TabBarView(
                             controller: tabController,
                             children: [
-                              QuestionsSheet(
-                                  currentQuestions: generalQuestions),
-                              QuestionsSheet(
-                                  currentQuestions: departmentQuestions),
+                              QuestionsSheet(currentQuestions: generalQuestions),
+                              QuestionsSheet(currentQuestions: departmentQuestions),
                             ],
                           ),
                         )

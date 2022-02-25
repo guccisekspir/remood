@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -20,13 +19,11 @@ class EventsPage extends StatefulWidget {
   _EventsPageState createState() => _EventsPageState();
 }
 
-class _EventsPageState extends State<EventsPage>
-    with SingleTickerProviderStateMixin {
+class _EventsPageState extends State<EventsPage> with SingleTickerProviderStateMixin {
   late TabController tabController;
 
   DatabaseBloc databaseBloc = getIt<DatabaseBloc>();
-  GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey =
-      GlobalKey<ScaffoldMessengerState>();
+  GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
 
   SizeHelper sizeHelper = SizeHelper();
 
@@ -93,7 +90,7 @@ class _EventsPageState extends State<EventsPage>
                   },
                   child: CircleAvatar(
                     radius: 25,
-                    backgroundColor: Color(0XFF79BAF2),
+                    backgroundColor: const Color(0XFF79BAF2),
                     child: Icon(
                       LineIcons.plus,
                       color: Colors.black.withOpacity(0.6),
@@ -101,66 +98,59 @@ class _EventsPageState extends State<EventsPage>
                     ),
                   ),
                 ),
-                body: Container(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 30, vertical: 10),
-                          child: Material(
-                            borderRadius: BorderRadius.circular(15),
-                            color: Color(0XFF79BAF2),
-                            child: Container(
-                              height: sizeHelper.height! * 0.09,
-                              child: TabBar(
-                                unselectedLabelColor: Colors.black,
-                                controller: tabController,
-                                labelColor: Colors.white,
-                                indicator: UnderlineTabIndicator(
-                                    insets:
-                                        EdgeInsets.symmetric(horizontal: 30),
-                                    borderSide: BorderSide(
-                                        color: Colors.black, width: 2.0)),
-                                tabs: [
-                                  Tab(
-                                    icon: Icon(LineIcons.cowboyHatSide),
-                                    text: "Outdoor",
-                                  ),
-                                  Tab(
-                                    icon: Icon(LineIcons.gamepad),
-                                    text: "Game",
-                                  ),
-                                  Tab(
-                                    icon: Icon(LineIcons.peace),
-                                    text: "Motivation",
-                                  )
-                                ],
-                              ),
+                body: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+                        child: Material(
+                          borderRadius: BorderRadius.circular(15),
+                          color: const Color(0XFF79BAF2),
+                          child: Container(
+                            height: sizeHelper.height! * 0.09,
+                            child: TabBar(
+                              unselectedLabelColor: Colors.black,
+                              controller: tabController,
+                              labelColor: Colors.white,
+                              indicator: const UnderlineTabIndicator(
+                                  insets: EdgeInsets.symmetric(horizontal: 30),
+                                  borderSide: const BorderSide(color: Colors.black, width: 2.0)),
+                              tabs: const [
+                                Tab(
+                                  icon: Icon(LineIcons.cowboyHatSide),
+                                  text: "Outdoor",
+                                ),
+                                Tab(
+                                  icon: const Icon(LineIcons.gamepad),
+                                  text: "Game",
+                                ),
+                                Tab(
+                                  icon: const Icon(LineIcons.peace),
+                                  text: "Motivation",
+                                )
+                              ],
                             ),
                           ),
                         ),
-                        Container(
-                          height: sizeHelper.height! * 0.70,
-                          child: TabBarView(
-                            controller: tabController,
-                            children: [
-                              EventSheet(
-                                eventList: outdoorEvents,
-                                currentUser: widget.currentUser,
-                              ),
-                              EventSheet(
-                                  eventList: gameEvents,
-                                  currentUser: widget.currentUser),
-                              EventSheet(
-                                eventList: motivationEvents,
-                                currentUser: widget.currentUser,
-                              )
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
+                      ),
+                      Container(
+                        height: sizeHelper.height! * 0.70,
+                        child: TabBarView(
+                          controller: tabController,
+                          children: [
+                            EventSheet(
+                              eventList: outdoorEvents,
+                              currentUser: widget.currentUser,
+                            ),
+                            EventSheet(eventList: gameEvents, currentUser: widget.currentUser),
+                            EventSheet(
+                              eventList: motivationEvents,
+                              currentUser: widget.currentUser,
+                            )
+                          ],
+                        ),
+                      )
+                    ],
                   ),
                 ),
               )

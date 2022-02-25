@@ -9,6 +9,7 @@ import 'package:remood/helpers/sizeHelper.dart';
 import 'package:remood/locator.dart';
 import 'package:remood/models/socialMediaPosts.dart';
 import 'package:remood/models/users.dart';
+import 'package:remood/widgets/bannerWidget.dart';
 import 'package:remood/widgets/socialPostSheet.dart';
 
 class HomePage extends StatefulWidget {
@@ -61,9 +62,7 @@ class _HomePageState extends State<HomePage> {
         body: isDataFetched
             ? Container(
                 height: sizeHelper.height,
-                decoration: BoxDecoration(
-                    gradient:
-                        LinearGradient(colors: [Colors.cyan, Colors.blue])),
+                decoration: const BoxDecoration(gradient: LinearGradient(colors: [Colors.cyan, Colors.blue])),
                 child: Column(
                   children: [
                     CarouselSlider(
@@ -79,9 +78,7 @@ class _HomePageState extends State<HomePage> {
                           }),
                     ),
                     buildIndicator(),
-                    Text("Social Media Feed",
-                        style: GoogleFonts.lilitaOne(
-                            color: Colors.white, fontSize: 20)),
+                    Text("Social Media Feed", style: GoogleFonts.lilitaOne(color: Colors.white, fontSize: 20)),
                     SizedBox(
                       height: sizeHelper.height! * 0.57,
                       child: ListView.builder(
@@ -112,12 +109,9 @@ class _HomePageState extends State<HomePage> {
         return Container(
           width: 8.0,
           height: 8.0,
-          margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
+          margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
           decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: _current == index
-                  ? Colors.deepPurpleAccent
-                  : Colors.deepOrangeAccent),
+              shape: BoxShape.circle, color: _current == index ? Colors.deepPurpleAccent : Colors.deepOrangeAccent),
         );
       }).toList(),
     );
@@ -125,235 +119,34 @@ class _HomePageState extends State<HomePage> {
 }
 
 final List<Widget> imageSliders = [
-  Container(
-    decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
-        gradient: LinearGradient(
-            colors: [Colors.deepPurpleAccent, Colors.deepPurple])),
-    margin: EdgeInsets.all(5.0),
-    child: Stack(
-      children: <Widget>[
-        Positioned(
-          top: 5,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: AutoSizeText(
-              "Rozet Avcısı!!!",
-              minFontSize: 5,
-              style: GoogleFonts.carterOne(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              ),
-              maxLines: 1,
-            ),
-          ),
-        ),
-        Row(
-          children: [
-            Align(
-              alignment: Alignment.bottomLeft,
-              child: Container(
-                width: 80,
-                height: 88,
-                child: Image.asset(
-                  "assets/icons/neonClap.png",
-                  fit: BoxFit.fill,
-                ),
-              ),
-            ),
-            Spacer(),
-            Padding(
-              padding: const EdgeInsets.only(top: 25),
-              child: Card(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15)),
-                child: Container(
-                  height: 60,
-                  width: 60,
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          fit: BoxFit.fill,
-                          image: AssetImage(
-                            "assets/stocks/stock2.png",
-                          )),
-                      borderRadius: BorderRadius.circular(15)),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 5, right: 15, top: 25),
-              child: RichText(
-                text: TextSpan(
-                    text: "Cagri\n",
-                    style: GoogleFonts.righteous(color: Colors.black),
-                    children: [
-                      TextSpan(
-                          text: "21",
-                          style: GoogleFonts.righteous(
-                              fontSize: 20, color: Colors.white)),
-                      TextSpan(
-                          text: " rozet kazandı",
-                          style: GoogleFonts.righteous(fontSize: 12)),
-                    ]),
-              ),
-            )
-          ],
-        )
-      ],
-    ),
-  ),
-  Container(
-    decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
-        gradient: LinearGradient(
-            colors: [Colors.deepPurpleAccent, Colors.deepPurple])),
-    margin: EdgeInsets.all(5.0),
-    child: Stack(
-      children: <Widget>[
-        Positioned(
-          top: 5,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: AutoSizeText(
-              "Coin Master!",
-              minFontSize: 20,
-              style: GoogleFonts.carterOne(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              ),
-              maxLines: 1,
-            ),
-          ),
-        ),
-        Row(
-          children: [
-            Align(
-              alignment: Alignment.bottomLeft,
-              child: Container(
-                width: 80,
-                height: 88,
-                child: Image.asset(
-                  "assets/icons/hotNeon.png",
-                  fit: BoxFit.fill,
-                ),
-              ),
-            ),
-            Spacer(),
-            Padding(
-              padding: const EdgeInsets.only(top: 25),
-              child: Card(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15)),
-                child: Container(
-                  height: 60,
-                  width: 60,
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          fit: BoxFit.fill,
-                          image: AssetImage(
-                            "assets/stocks/stock1.png",
-                          )),
-                      borderRadius: BorderRadius.circular(15)),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 5, right: 15, top: 25),
-              child: RichText(
-                text: TextSpan(
-                    text: "Akın\n",
-                    style: GoogleFonts.righteous(color: Colors.black),
-                    children: [
-                      TextSpan(
-                          text: "6432",
-                          style: GoogleFonts.righteous(
-                              fontSize: 19, color: Colors.white)),
-                      TextSpan(
-                          text: " moody points",
-                          style: GoogleFonts.righteous(fontSize: 12)),
-                    ]),
-              ),
-            )
-          ],
-        )
-      ],
-    ),
-  ),
-  Container(
-    decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
-        gradient: LinearGradient(
-            colors: [Colors.deepPurpleAccent, Colors.deepPurple])),
-    margin: EdgeInsets.all(5.0),
-    child: Stack(
-      children: <Widget>[
-        Positioned(
-          top: 5,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: AutoSizeText(
-              "Best Organizer!",
-              minFontSize: 20,
-              style: GoogleFonts.carterOne(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              ),
-              maxLines: 1,
-            ),
-          ),
-        ),
-        Row(
-          children: [
-            Align(
-              alignment: Alignment.bottomLeft,
-              child: Container(
-                width: 80,
-                height: 88,
-                child: Image.asset(
-                  "assets/icons/userNeon.png",
-                  fit: BoxFit.fill,
-                ),
-              ),
-            ),
-            Spacer(),
-            Padding(
-              padding: const EdgeInsets.only(top: 25),
-              child: Card(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15)),
-                child: Container(
-                  height: 50,
-                  width: 50,
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          fit: BoxFit.fill,
-                          image: AssetImage(
-                            "assets/stocks/stock3.png",
-                          )),
-                      borderRadius: BorderRadius.circular(15)),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 5, right: 15, top: 25),
-              child: RichText(
-                text: TextSpan(
-                    text: "Eda\n",
-                    style: GoogleFonts.righteous(color: Colors.black),
-                    children: [
-                      TextSpan(
-                          text: "22",
-                          style: GoogleFonts.righteous(
-                              fontSize: 19, color: Colors.white)),
-                      TextSpan(
-                          text: " etkinlik düzenlendi",
-                          style: GoogleFonts.righteous(fontSize: 12)),
-                    ]),
-              ),
-            )
-          ],
-        )
-      ],
-    ),
-  ),
+  BannerWidget(
+      title: "Rozet Avcısı!!!",
+      assetPath: "assets/icons/neonClap.png",
+      secondAssetPath: "assets/stocks/stock2.png",
+      contextStrings: RichText(
+        text: TextSpan(text: "Cagri\n", style: GoogleFonts.righteous(color: Colors.black), children: [
+          TextSpan(text: "21", style: GoogleFonts.righteous(fontSize: 20, color: Colors.white)),
+          TextSpan(text: " rozet kazandı", style: GoogleFonts.righteous(fontSize: 12)),
+        ]),
+      )),
+  BannerWidget(
+      title: "Coin Master!",
+      assetPath: "assets/icons/hotNeon.png",
+      secondAssetPath: "assets/stocks/stock1.png",
+      contextStrings: RichText(
+        text: TextSpan(text: "Akın\n", style: GoogleFonts.righteous(color: Colors.black), children: [
+          TextSpan(text: "6432", style: GoogleFonts.righteous(fontSize: 19, color: Colors.white)),
+          TextSpan(text: " moody points", style: GoogleFonts.righteous(fontSize: 12)),
+        ]),
+      )),
+  BannerWidget(
+      title: "Best Organizer!",
+      assetPath: "assets/icons/userNeon.png",
+      secondAssetPath: "assets/stocks/stock3.png",
+      contextStrings: RichText(
+        text: TextSpan(text: "Eda\n", style: GoogleFonts.righteous(color: Colors.black), children: [
+          TextSpan(text: "22", style: GoogleFonts.righteous(fontSize: 19, color: Colors.white)),
+          TextSpan(text: " etkinlik düzenlendi", style: GoogleFonts.righteous(fontSize: 12)),
+        ]),
+      )),
 ];

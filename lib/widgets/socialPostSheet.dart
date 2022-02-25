@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:remood/blocs/databaseBloc/bloc/database_bloc.dart';
-import 'package:remood/data/databaseRepository.dart';
 import 'package:remood/helpers/sizeHelper.dart';
 import 'package:remood/locator.dart';
 import 'package:remood/models/socialMediaPosts.dart';
@@ -16,9 +15,7 @@ class SocialPostSheet extends StatefulWidget {
   final SocialMediaPost currentPost;
   final Users currentUser;
 
-  const SocialPostSheet(
-      {Key? key, required this.currentPost, required this.currentUser})
-      : super(key: key);
+  const SocialPostSheet({Key? key, required this.currentPost, required this.currentUser}) : super(key: key);
 
   @override
   _SocialPostSheetState createState() => _SocialPostSheetState();
@@ -31,8 +28,7 @@ class _SocialPostSheetState extends State<SocialPostSheet> {
   @override
   void initState() {
     // TODO: implement initState
-    _controllerBottomCenter =
-        ConfettiController(duration: const Duration(seconds: 2));
+    _controllerBottomCenter = ConfettiController(duration: const Duration(seconds: 2));
     currentPost = widget.currentPost;
     super.initState();
   }
@@ -58,7 +54,7 @@ class _SocialPostSheetState extends State<SocialPostSheet> {
           Positioned(
             bottom: 14,
             left: 10,
-            child: Container(
+            child: SizedBox(
               height: sizeHelper.height! * 0.18,
               width: sizeHelper.width! * 0.8,
               child: Image.network(
@@ -81,89 +77,72 @@ class _SocialPostSheetState extends State<SocialPostSheet> {
                         isLiked = !isLiked;
                         if (isLiked) {
                           _controllerBottomCenter.play();
-                          widget.currentUser.moodcoin =
-                              widget.currentUser.moodcoin! + 400;
+                          widget.currentUser.moodcoin = widget.currentUser.moodcoin! + 400;
                         } else {
-                          widget.currentUser.moodcoin =
-                              widget.currentUser.moodcoin! - 400;
+                          widget.currentUser.moodcoin = widget.currentUser.moodcoin! - 400;
                         }
                       });
 
-                      databaseBloc
-                          .add(UpdateUser(willUpdateUser: widget.currentUser));
+                      databaseBloc.add(UpdateUser(willUpdateUser: widget.currentUser));
                       if (isLiked) {
-                        Future.delayed(Duration(seconds: 2))
-                            .then((value) => showDialog(
-                                context: context,
-                                builder: (context) {
-                                  return Padding(
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: 50, vertical: 200),
-                                    child: Container(
-                                      height: sizeHelper.height! * 0.7,
-                                      decoration: BoxDecoration(
-                                          color: Colors.deepPurpleAccent,
-                                          borderRadius:
-                                              BorderRadius.circular(15)),
-                                      child: Column(
-                                        children: [
-                                          Align(
-                                            alignment: Alignment.center,
-                                            child: Text(
-                                              "Tebrikler",
-                                              style: GoogleFonts.lilitaOne(
-                                                  color: Colors.white,
-                                                  fontSize: 35),
-                                            ),
-                                          ),
-                                          Spacer(),
-                                          Container(
-                                            width: 50,
-                                            height: 50,
-                                            child: Image.asset(
-                                                "assets/icons/coin.png"),
-                                          ),
-                                          Spacer(),
-                                          Align(
-                                            alignment: Alignment.center,
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                              child: Text(
-                                                "Sosyal medya postunu begenerek 400 MoodPoint kazandınız",
-                                                style: GoogleFonts.lilitaOne(
-                                                    color: Colors.white,
-                                                    fontSize: 25),
-                                                textAlign: TextAlign.center,
-                                              ),
-                                            ),
-                                          ),
-                                          Spacer(),
-                                        ],
+                        Future.delayed(const Duration(seconds: 2)).then((value) => showDialog(
+                            context: context,
+                            builder: (context) {
+                              return Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 200),
+                                child: Container(
+                                  height: sizeHelper.height! * 0.7,
+                                  decoration: BoxDecoration(
+                                      color: Colors.deepPurpleAccent, borderRadius: BorderRadius.circular(15)),
+                                  child: Column(
+                                    children: [
+                                      Align(
+                                        alignment: Alignment.center,
+                                        child: Text(
+                                          "Tebrikler",
+                                          style: GoogleFonts.lilitaOne(color: Colors.white, fontSize: 35),
+                                        ),
                                       ),
-                                    ),
-                                  );
-                                }));
+                                      const Spacer(),
+                                      SizedBox(
+                                        width: 50,
+                                        height: 50,
+                                        child: Image.asset("assets/icons/coin.png"),
+                                      ),
+                                      const Spacer(),
+                                      Align(
+                                        alignment: Alignment.center,
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Text(
+                                            "Sosyal medya postunu begenerek 400 MoodPoint kazandınız",
+                                            style: GoogleFonts.lilitaOne(color: Colors.white, fontSize: 25),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        ),
+                                      ),
+                                      const Spacer(),
+                                    ],
+                                  ),
+                                ),
+                              );
+                            }));
                       }
                     }),
                 Text(currentPost.likeCount.toString()),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
-                Icon(LineIcons.comment),
+                const Icon(LineIcons.comment),
                 Text(currentPost.commentCount.toString()),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
-                Text("400",
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.roboto(color: Colors.black)),
+                Text("400", textAlign: TextAlign.center, style: GoogleFonts.roboto(color: Colors.black)),
                 Container(
                   width: 25,
                   height: 25,
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage("assets/icons/coin.png"))),
+                  decoration: const BoxDecoration(image: DecorationImage(image: AssetImage("assets/icons/coin.png"))),
                 )
               ],
             ),
@@ -179,11 +158,9 @@ class _SocialPostSheetState extends State<SocialPostSheet> {
                       width: 50,
                       height: 50,
                       decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          image: DecorationImage(
-                              image: NetworkImage(currentPost.ownerPhoto!))),
+                          shape: BoxShape.circle, image: DecorationImage(image: NetworkImage(currentPost.ownerPhoto!))),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 5,
                     ),
                     SizedBox(

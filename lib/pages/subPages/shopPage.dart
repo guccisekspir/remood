@@ -4,6 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:remood/helpers/sizeHelper.dart';
 
 class ShopPage extends StatefulWidget {
+  const ShopPage({Key? key}) : super(key: key);
+
   @override
   _ShopPageState createState() => _ShopPageState();
 }
@@ -28,11 +30,11 @@ class _ShopPageState extends State<ShopPage> {
       body: Container(
         child: Column(
           children: [
-            Container(
+            SizedBox(
               height: sizeHelper.height,
               width: sizeHelper.width,
               child: GridView.builder(
-                physics: ClampingScrollPhysics(),
+                physics: const ClampingScrollPhysics(),
                 controller: gridController,
                 itemCount: 5,
                 gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
@@ -43,7 +45,7 @@ class _ShopPageState extends State<ShopPage> {
                 itemBuilder: (BuildContext context, int index) {
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Container(
+                    child: SizedBox(
                       height: cardHeight,
                       width: cardWidth,
                       child: Stack(
@@ -53,25 +55,21 @@ class _ShopPageState extends State<ShopPage> {
                               child: Container(
                                 height: cardHeight * 0.6,
                                 width: cardWidth,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20)),
+                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
                                 child: Stack(
                                   children: [
                                     Align(
                                         alignment: Alignment.topLeft,
-                                        child: Container(
+                                        child: SizedBox(
                                           height: cardHeight * 0.3,
                                           width: cardWidth * 0.6,
                                           child: Padding(
-                                            padding:
-                                                const EdgeInsets.only(left: 10),
+                                            padding: const EdgeInsets.only(left: 10),
                                             child: AutoSizeText(
                                               " \n        Quiz",
                                               maxLines: 2,
                                               minFontSize: 9,
-                                              style: GoogleFonts.lilitaOne(
-                                                  color: Colors.white,
-                                                  fontSize: 20),
+                                              style: GoogleFonts.lilitaOne(color: Colors.white, fontSize: 20),
                                             ),
                                           ),
                                         )),
@@ -79,35 +77,29 @@ class _ShopPageState extends State<ShopPage> {
                                         bottom: 5,
                                         left: 10,
                                         child: ConstrainedBox(
-                                          constraints: BoxConstraints(
-                                              maxHeight: cardHeight * 0.3,
-                                              maxWidth: cardWidth * 0.5),
-                                          child: AutoSizeText("asdadsadsada"),
+                                          constraints:
+                                              BoxConstraints(maxHeight: cardHeight * 0.3, maxWidth: cardWidth * 0.5),
+                                          child: const AutoSizeText("asdadsadsada"),
                                         )),
                                     Positioned(
                                         bottom: 5,
                                         right: 5,
                                         child: ConstrainedBox(
-                                          constraints: BoxConstraints(
-                                              maxHeight: cardHeight * 0.3,
-                                              maxWidth: cardWidth * 0.3),
-                                          child: AutoSizeText("asdadsada"),
+                                          constraints:
+                                              BoxConstraints(maxHeight: cardHeight * 0.3, maxWidth: cardWidth * 0.3),
+                                          child: const AutoSizeText("asdadsada"),
                                         ))
                                   ],
                                 ),
                               )),
                           Align(
                             alignment: Alignment.topRight,
-                            child: Container(
-                                height: cardHeight * 0.55,
-                                width: cardWidth * 0.5,
-                                color: Colors.amber),
+                            child: Container(height: cardHeight * 0.55, width: cardWidth * 0.5, color: Colors.amber),
                           ),
                         ],
                       ),
                     ),
                   );
-                  ;
                 },
               ),
             )

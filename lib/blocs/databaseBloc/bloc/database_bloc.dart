@@ -27,10 +27,9 @@ class DatabaseBloc extends Bloc<DatabaseEvent, DatabaseState> {
         List<Event> outdoorEvents = [];
         List<Event> gameEvents = [];
         List<Event> motivationEvents = [];
-        List<Event> currentEvents =
-            await dbRepository.saveEvent(event.willSaveEvent);
+        List<Event> currentEvents = await dbRepository.saveEvent(event.willSaveEvent);
 
-        currentEvents.forEach((element) {
+        for (var element in currentEvents) {
           if (element.type == "Outdoor") {
             outdoorEvents.add(element);
           }
@@ -40,12 +39,9 @@ class DatabaseBloc extends Bloc<DatabaseEvent, DatabaseState> {
           if (element.type == "Motivation") {
             motivationEvents.add(element);
           }
-        });
+        }
 
-        yield EventSavedState(
-            outdoorEvents: outdoorEvents,
-            gameEvents: gameEvents,
-            motivationEvents: motivationEvents);
+        yield EventSavedState(outdoorEvents: outdoorEvents, gameEvents: gameEvents, motivationEvents: motivationEvents);
       } catch (e) {
         yield EventSavingErrorState(e.toString());
       }
@@ -57,7 +53,7 @@ class DatabaseBloc extends Bloc<DatabaseEvent, DatabaseState> {
         List<Event> motivationEvents = [];
         List<Event> currentEvents = await dbRepository.getEvent();
 
-        currentEvents.forEach((element) {
+        for (var element in currentEvents) {
           if (element.type == "Outdoor") {
             outdoorEvents.add(element);
           }
@@ -67,12 +63,10 @@ class DatabaseBloc extends Bloc<DatabaseEvent, DatabaseState> {
           if (element.type == "Motivation") {
             motivationEvents.add(element);
           }
-        });
+        }
 
         yield EventFetchedState(
-            outdoorEvents: outdoorEvents,
-            gameEvents: gameEvents,
-            motivationEvents: motivationEvents);
+            outdoorEvents: outdoorEvents, gameEvents: gameEvents, motivationEvents: motivationEvents);
       } catch (e) {
         yield EventFetchErrorState(e.toString());
       }
@@ -96,18 +90,16 @@ class DatabaseBloc extends Bloc<DatabaseEvent, DatabaseState> {
 
         List<Question> currentEvents = await dbRepository.getQuestion();
 
-        currentEvents.forEach((element) {
+        for (var element in currentEvents) {
           if (element.type == "General") {
             generalQuestions.add(element);
           }
           if (element.type == "Department") {
             departmentQuestions.add(element);
           }
-        });
+        }
 
-        yield QuestionsFetchedState(
-            generalQuestions: generalQuestions,
-            departmentQuestions: departmentQuestions);
+        yield QuestionsFetchedState(generalQuestions: generalQuestions, departmentQuestions: departmentQuestions);
       } catch (e) {
         yield QuestionsFetchErrorState(e.toString());
       }
@@ -117,21 +109,18 @@ class DatabaseBloc extends Bloc<DatabaseEvent, DatabaseState> {
         List<Question> generalQuestions = [];
         List<Question> departmentQuestions = [];
 
-        List<Question> currentEvents =
-            await dbRepository.saveQuestion(event.willSaveQuestions);
+        List<Question> currentEvents = await dbRepository.saveQuestion(event.willSaveQuestions);
 
-        currentEvents.forEach((element) {
+        for (var element in currentEvents) {
           if (element.type == "General") {
             generalQuestions.add(element);
           }
           if (element.type == "Department") {
             departmentQuestions.add(element);
           }
-        });
+        }
 
-        yield QuestionsSavedState(
-            generalQuestions: generalQuestions,
-            departmentQuestions: departmentQuestions);
+        yield QuestionsSavedState(generalQuestions: generalQuestions, departmentQuestions: departmentQuestions);
       } catch (e) {
         yield QuestionsSavingErrorState(e.toString());
       }

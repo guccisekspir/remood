@@ -20,9 +20,7 @@ class NewEventPage extends StatefulWidget {
   final Users editedUser;
   final DatabaseBloc databaseBloc;
 
-  const NewEventPage(
-      {Key? key, required this.editedUser, required this.databaseBloc})
-      : super(key: key);
+  const NewEventPage({Key? key, required this.editedUser, required this.databaseBloc}) : super(key: key);
   @override
   _NewEventPageState createState() => _NewEventPageState();
 }
@@ -35,8 +33,7 @@ class _NewEventPageState extends State<NewEventPage> {
   Event? editingEvent = Event();
 
   //Form Variables//
-  final GlobalKey<FormBuilderState> formBuilderKey =
-      GlobalKey<FormBuilderState>();
+  final GlobalKey<FormBuilderState> formBuilderKey = GlobalKey<FormBuilderState>();
 
   TextEditingController nameEditingController = TextEditingController();
   TextEditingController locationController = TextEditingController();
@@ -78,23 +75,22 @@ class _NewEventPageState extends State<NewEventPage> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         leading: IconButton(
-          icon: Icon(Icons.close),
+          icon: const Icon(Icons.close),
           onPressed: () {
             Navigator.of(context).pop();
           },
         ),
-        title: Text("Event Creator"),
+        title: const Text("Event Creator"),
         actions: [
           IconButton(
-              icon: Icon(Icons.done),
+              icon: const Icon(Icons.done),
               onPressed: () {
                 if (formBuilderKey.currentState!.validate()) {
                   debugPrint(willSaveEvent.location);
                   debugPrint(willSaveEvent.name);
                   debugPrint(willSaveEvent.department);
                   willSaveEvent.organizerName = widget.editedUser.name;
-                  willSaveEvent.photoUrl =
-                      "https://i.scdn.co/image/ab67616d00001e028d57767a3be13ebbedeff86e";
+                  willSaveEvent.photoUrl = "https://i.scdn.co/image/ab67616d00001e028d57767a3be13ebbedeff86e";
                   willSaveEvent.joinersID = [widget.editedUser.uid!];
                   willSaveEvent.joinersPhoto = [widget.editedUser.photoUrl!];
                   databaseBloc.add(SaveEvent(willSaveEvent: willSaveEvent));
@@ -115,14 +111,11 @@ class _NewEventPageState extends State<NewEventPage> {
         },
         child: Container(
           height: sizeHelper.height,
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-                begin: Alignment.bottomLeft,
-                end: Alignment.topRight,
-                colors: [
-                  Color(0XFF79AEF2),
-                  Color(0XFFBBF2ED),
-                ]),
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(begin: Alignment.bottomLeft, end: Alignment.topRight, colors: [
+              Color(0XFF79AEF2),
+              Color(0XFFBBF2ED),
+            ]),
           ),
           child: SingleChildScrollView(
             child: FormBuilder(
@@ -132,7 +125,7 @@ class _NewEventPageState extends State<NewEventPage> {
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 50,
                   ),
                   Center(
@@ -154,17 +147,13 @@ class _NewEventPageState extends State<NewEventPage> {
                           maxChips: 1,
                           onChanged: (List<String>? choices) {
                             if (choices != null) {
-                              if (choices.length > 0)
-                                willSaveEvent.type = choices[0];
+                              if (choices.isNotEmpty) willSaveEvent.type = choices[0];
                             }
                           },
-                          options: [
-                            FormBuilderFieldOption(
-                                value: 'Outdoor', child: Text('Outdoor')),
-                            FormBuilderFieldOption(
-                                value: 'Game', child: Text('Game')),
-                            FormBuilderFieldOption(
-                                value: 'Motivation', child: Text('Motivation')),
+                          options: const [
+                            FormBuilderFieldOption(value: 'Outdoor', child: const Text('Outdoor')),
+                            FormBuilderFieldOption(value: 'Game', child: const Text('Game')),
+                            FormBuilderFieldOption(value: 'Motivation', child: const Text('Motivation')),
                           ]),
                     ),
                   ),
@@ -187,21 +176,15 @@ class _NewEventPageState extends State<NewEventPage> {
                           maxChips: 1,
                           onChanged: (List<String>? choices) {
                             if (choices != null) {
-                              if (choices.length > 0)
-                                willSaveEvent.department = choices[0];
+                              if (choices.isNotEmpty) willSaveEvent.department = choices[0];
                             }
                           },
-                          options: [
-                            FormBuilderFieldOption(
-                                value: 'Global', child: Text('Global')),
-                            FormBuilderFieldOption(
-                                value: 'IT', child: Text('IT')),
-                            FormBuilderFieldOption(
-                                value: 'Marketing', child: Text('Marketing')),
-                            FormBuilderFieldOption(
-                                value: 'HR', child: Text('HR')),
-                            FormBuilderFieldOption(
-                                value: 'Sales', child: Text('Sales')),
+                          options: const [
+                            FormBuilderFieldOption(value: 'Global', child: Text('Global')),
+                            FormBuilderFieldOption(value: 'IT', child: Text('IT')),
+                            FormBuilderFieldOption(value: 'Marketing', child: Text('Marketing')),
+                            FormBuilderFieldOption(value: 'HR', child: Text('HR')),
+                            FormBuilderFieldOption(value: 'Sales', child: Text('Sales')),
                           ]),
                     ),
                   ),
@@ -224,26 +207,20 @@ class _NewEventPageState extends State<NewEventPage> {
                           maxChips: 3,
                           onChanged: (List<String>? choices) {
                             if (choices != null) {
-                              if (choices.length > 0)
+                              if (choices.isNotEmpty) {
                                 willSaveEvent.eventSections = [];
-                              choices.forEach((element) {
+                              }
+                              for (var element in choices) {
                                 willSaveEvent.eventSections!.add(element);
-                              });
+                              }
                             }
                           },
-                          options: [
-                            FormBuilderFieldOption(
-                                value: 'Gönüllülük', child: Text('Gönüllülük')),
-                            FormBuilderFieldOption(
-                                value: 'Farkındalık',
-                                child: Text('Farkındalık')),
-                            FormBuilderFieldOption(
-                                value: 'Sanat', child: Text('Sanat')),
-                            FormBuilderFieldOption(
-                                value: 'Gezi', child: Text('Gezi')),
-                            FormBuilderFieldOption(
-                                value: 'Takım Çalışması',
-                                child: Text('Takım Çalışması')),
+                          options: const [
+                            FormBuilderFieldOption(value: 'Gönüllülük', child: Text('Gönüllülük')),
+                            FormBuilderFieldOption(value: 'Farkındalık', child: Text('Farkındalık')),
+                            FormBuilderFieldOption(value: 'Sanat', child: Text('Sanat')),
+                            FormBuilderFieldOption(value: 'Gezi', child: Text('Gezi')),
+                            FormBuilderFieldOption(value: 'Takım Çalışması', child: Text('Takım Çalışması')),
                           ]),
                     ),
                   ),
@@ -316,16 +293,14 @@ Widget myInputForm({
       focusNode: focusNode,
       controller: textEditingController,
       maxLines: title == "Biography" ? 2 : 1,
-      style: TextStyle(color: Colors.white),
+      style: const TextStyle(color: Colors.white),
       decoration: InputDecoration(
           focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide(color: Colors.white)),
+              borderRadius: BorderRadius.circular(10), borderSide: const BorderSide(color: Colors.white)),
           enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide(color: Colors.white)),
+              borderRadius: BorderRadius.circular(10), borderSide: const BorderSide(color: Colors.white)),
           labelText: title,
-          labelStyle: TextStyle(color: Colors.white)),
+          labelStyle: const TextStyle(color: Colors.white)),
     ),
   );
 }

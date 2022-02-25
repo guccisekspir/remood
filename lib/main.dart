@@ -13,6 +13,8 @@ void main() {
 
 class MyApp extends StatelessWidget {
   final Future<FirebaseApp> initialization = Firebase.initializeApp();
+
+  MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -22,9 +24,7 @@ class MyApp extends StatelessWidget {
             return MaterialApp(
                 home: Scaffold(
                     //TODO error verince yeniden bağlandır
-                    body: Container(
-              child: Text("Nba" + snapshot.error.toString()),
-            )));
+                    body: Text("Error" + snapshot.error.toString())));
           }
           if (snapshot.connectionState == ConnectionState.done) {
             return MaterialApp(
@@ -34,11 +34,10 @@ class MyApp extends StatelessWidget {
                   hintColor: Colors.white,
                   hoverColor: Colors.white,
                   primarySwatch: Colors.blue,
-                  accentColor: Colors.black,
                   visualDensity: VisualDensity.adaptivePlatformDensity,
                 ),
                 builder: EasyLoading.init(),
-                home: LandPage());
+                home: const LandPage());
           }
 
           return MaterialApp(

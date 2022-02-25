@@ -9,14 +9,15 @@ import 'package:remood/locator.dart';
 import 'package:remood/pages/navigationPage.dart';
 
 class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
+
   @override
   _LoginPageState createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
   AuthBloc authBloc = getIt<AuthBloc>();
-  GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey =
-      GlobalKey<ScaffoldMessengerState>();
+  GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
   SizeHelper sizeHelper = SizeHelper();
   @override
   Widget build(BuildContext context) {
@@ -25,7 +26,7 @@ class _LoginPageState extends State<LoginPage> {
       child: Container(
         width: sizeHelper.width,
         height: sizeHelper.height,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
             image: DecorationImage(
                 image: AssetImage(
                   "assets/login-min.png",
@@ -59,10 +60,8 @@ class _LoginPageState extends State<LoginPage> {
             child: Container(
               width: sizeHelper.width,
               height: sizeHelper.height,
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                      fit: BoxFit.fill,
-                      image: AssetImage("assets/login-min.png"))),
+              decoration: const BoxDecoration(
+                  image: DecorationImage(fit: BoxFit.fill, image: AssetImage("assets/login-min.png"))),
               child: Stack(
                 children: [
                   Align(
@@ -74,24 +73,20 @@ class _LoginPageState extends State<LoginPage> {
                       child: Container(
                         height: sizeHelper.height! * 0.06,
                         width: sizeHelper.width! * 0.7,
-                        decoration: BoxDecoration(
-                            color: Colors.redAccent,
-                            borderRadius: BorderRadius.circular(15)),
+                        decoration: BoxDecoration(color: Colors.redAccent, borderRadius: BorderRadius.circular(15)),
                         child: Center(
                             child: Row(
                           children: [
-                            Icon(
+                            const Icon(
                               LineIcons.googleLogo,
                               color: Colors.white,
                               size: 50,
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 20,
                             ),
-                            Text("Google SignIn",
-                                style: GoogleFonts.lilitaOne(
-                                    color: Colors.white, fontSize: 25)),
-                            Spacer()
+                            Text("Google SignIn", style: GoogleFonts.lilitaOne(color: Colors.white, fontSize: 25)),
+                            const Spacer()
                           ],
                         )),
                       ),
